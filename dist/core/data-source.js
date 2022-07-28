@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DataSourceModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
+const address_1 = require("src/address/address");
 const typeorm_2 = require("typeorm");
 const costumer_1 = require("../costumers/costumer");
 let DataSourceModule = class DataSourceModule {
@@ -31,7 +32,7 @@ DataSourceModule = __decorate([
                 database: "nestjs_crud_db",
                 synchronize: true,
                 logging: false,
-                entities: [costumer_1.Costumer],
+                entities: [costumer_1.Costumer, address_1.Address],
                 migrations: [],
                 subscribers: [],
             }),

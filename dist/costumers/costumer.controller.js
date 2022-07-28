@@ -14,25 +14,26 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CostumerController = void 0;
 const common_1 = require("@nestjs/common");
+const swagger_1 = require("@nestjs/swagger");
 const costumer_service_1 = require("./costumer.service");
 let CostumerController = class CostumerController {
     constructor(costumerService) {
         this.costumerService = costumerService;
     }
-    async createCostumer(costumer) {
-        return await this.costumerService.create(costumer);
+    async createCostumer(body) {
+        return await this.costumerService.create(body);
     }
     async update(body) {
         return await this.costumerService.update(body);
     }
     async findById(body) {
-        return await this.costumerService.findById(body.id);
+        return await this.costumerService.findById(body);
     }
     async listAll() {
         return await this.costumerService.listAll();
     }
     async delete(body) {
-        return await this.costumerService.delete(body.id);
+        return await this.costumerService.delete(body);
     }
 };
 __decorate([
@@ -70,6 +71,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CostumerController.prototype, "delete", null);
 CostumerController = __decorate([
+    (0, swagger_1.ApiTags)('costumer'),
     (0, common_1.Controller)('costumer'),
     __metadata("design:paramtypes", [costumer_service_1.CostumerService])
 ], CostumerController);

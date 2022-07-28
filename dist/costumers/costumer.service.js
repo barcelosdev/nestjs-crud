@@ -8,22 +8,29 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CostumerService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const costumer_1 = require("./costumer");
 const typeorm_2 = require("typeorm");
+const address_1 = require("../address/address");
+const address_service_1 = require("../address/address.service");
 let CostumerService = class CostumerService {
-    constructor(repository) {
-        this.repository = repository;
+    constructor() {
+        this.addressService = new address_service_1.AddressService();
     }
-    create(body) {
+    async create(body) {
         try {
-            const newCostumer = new costumer_1.Costumer(body['_name'], body['_email']);
+            const properties = this.addressService.findCep(body['cep']);
+            let address = new address_1.Address();
+            address.cep = (await properties).cep;
+            address.street = (await properties).street;
+            address.number = body['number'];
+            address.district = (await properties).district;
+            address.city = (await properties).city;
+            address.uf = (await properties).uf;
+            const newCostumer = new costumer_1.Costumer(body['_name'], body['_email'], address);
             this.repository.save(newCostumer);
             return JSON.parse(JSON.stringify(newCostumer));
         }
@@ -31,11 +38,10 @@ let CostumerService = class CostumerService {
             return JSON.parse(JSON.stringify(error));
         }
     }
-    async update(body) {
+    async update(costumer) {
         try {
-            const cos = await this.findById(body['_id']);
-            cos.name = body['_name'];
-            cos.email = body['_email'];
+            let cos = await this.findById(costumer._id);
+            cos = costumer;
             this.repository.save(cos);
             return JSON.parse(JSON.stringify(cos));
         }
@@ -43,9 +49,9 @@ let CostumerService = class CostumerService {
             return JSON.parse(JSON.stringify(error));
         }
     }
-    findById(id) {
+    async findById(id) {
         try {
-            return this.repository.findOneBy({ id });
+            return await this.repository.findOneBy(id);
         }
         catch (error) {
             return JSON.parse(JSON.stringify(error));
@@ -69,10 +75,13 @@ let CostumerService = class CostumerService {
         }
     }
 };
+__decorate([
+    (0, typeorm_1.InjectRepository)(costumer_1.Costumer),
+    __metadata("design:type", typeorm_2.Repository)
+], CostumerService.prototype, "repository", void 0);
 CostumerService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_1.InjectRepository)(costumer_1.Costumer)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __metadata("design:paramtypes", [])
 ], CostumerService);
 exports.CostumerService = CostumerService;
 //# sourceMappingURL=costumer.service.js.map

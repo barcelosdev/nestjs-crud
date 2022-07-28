@@ -1,7 +1,8 @@
 import { Module } from "@nestjs/common"
 import { TypeOrmModule } from "@nestjs/typeorm"
+import { Address } from "../../entities/address"
 import { DataSource } from "typeorm"
-import { Costumer } from "src/costumers/costumer"
+import { Costumer } from "../../entities/costumer"
 
 @Module({
     imports: [
@@ -14,7 +15,7 @@ import { Costumer } from "src/costumers/costumer"
             database: "nestjs_crud_db",
             synchronize: true,
             logging: false,
-            entities: [Costumer],
+            entities: [Costumer, Address],
             migrations: [],
             subscribers: [],
         }),

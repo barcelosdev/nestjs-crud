@@ -1,5 +1,5 @@
-import { CostumerController } from '../src/costumers/costumer.controller';
-import { CostumerService } from "../src/costumers/costumer.service";
+//import { CostumerController } from '../src/costumers/costumer.controller';
+//import { CostumerService } from "../src/costumers/costumer.service";
 
 describe('CostumerController', () => {
   it('should be albe to create a new costumer', async () => {

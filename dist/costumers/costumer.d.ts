@@ -1,14 +1,16 @@
+import { Address } from "../address/address";
 export declare class Costumer {
-    protected _id: string;
-    protected _name: string;
-    protected _email: string;
-    private _createdAt;
-    constructor(name: string, email: string, id?: string);
-    get id(): string;
-    get name(): string;
-    set name(name: string);
-    get email(): string;
-    set email(email: string);
-    get createdAt(): string;
-    set createdAt(createdAt: string);
+    private id;
+    protected name: string;
+    protected email: string;
+    private createdAt;
+    address: Address;
+    constructor(name: string, email: string, address: Address, id?: string);
+    get _id(): string;
+    get _name(): string;
+    set _name(name: string);
+    get _email(): string;
+    set _email(email: string);
+    get _createdAt(): string;
+    set _createdAt(createdAt: string);
 }

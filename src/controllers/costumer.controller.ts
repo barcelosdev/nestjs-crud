@@ -1,15 +1,16 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
-import { Costumer } from "./costumer";
-import { CostumerService } from "./costumer.service";
+import { ApiTags } from "@nestjs/swagger";
+import { CostumerService } from "../services/costumer.service";
 
+@ApiTags('costumer')
 @Controller('costumer')
 export class CostumerController {
 
     constructor(private costumerService: CostumerService) {}
 
     @Post()
-    async createCostumer(@Body() costumer) {
-        return await this.costumerService.create(costumer)
+    async createCostumer(@Body() body) {
+        return await this.costumerService.create(body)
     }
     @Put()
     async update(@Body() body) {
@@ -17,7 +18,7 @@ export class CostumerController {
     }
     @Get()
     async findById(@Body() body) {
-        return await this.costumerService.findById(body.id)
+        return await this.costumerService.findById(body)
     }
     @Get('/list')
     async listAll() {
@@ -25,6 +26,6 @@ export class CostumerController {
     }
     @Delete()
     async delete(@Body() body) {
-        return await this.costumerService.delete(body.id)
+        return await this.costumerService.delete(body)
     }
 }
