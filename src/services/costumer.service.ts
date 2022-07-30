@@ -1,4 +1,4 @@
-import { Inject, Injectable } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { InjectRepository } from '@nestjs/typeorm';
 import { Costumer } from "../entities/costumer";
 import { Repository } from "typeorm";
@@ -11,8 +11,8 @@ export class CostumerService implements CRUD<Costumer> {
 
     @InjectRepository(Costumer)
     private costumerRepo: Repository<Costumer>
-    /*@InjectRepository(Address)
-    private addressRepo: Repository<Address>*/
+    @InjectRepository(Address)
+    private addressRepo: Repository<Address>
 
     private addressService: AddressService
 
@@ -33,9 +33,14 @@ export class CostumerService implements CRUD<Costumer> {
             address.city = (await properties).city
             address.uf = (await properties).uf
 
-            const newCostumer: Costumer = new Costumer(body['_name'], body['_email'], address)
-            //newCostumer.address = address
-            //this.addressRepo.save(address)
+            this.addressRepo.save(address)
+
+            const newCostumer: Costumer = new Costumer(
+                body['_name'], 
+                body['_email'], 
+                address,
+            )
+            
             this.costumerRepo.save(newCostumer)
 
             return JSON.parse(JSON.stringify(newCostumer))

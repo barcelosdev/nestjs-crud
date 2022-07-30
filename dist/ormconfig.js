@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const typeorm_1 = require("typeorm");
-const config = new typeorm_1.DataSource({
+const config = {
     type: "postgres",
     host: "localhost",
     port: 5432,
@@ -10,9 +9,9 @@ const config = new typeorm_1.DataSource({
     database: "nestjs_crud_db",
     synchronize: false,
     logging: false,
-    entities: ['dist/src/entities/*{.ts,.js}'],
-    migrations: ['dist/src/migration/*{.ts,.js}'],
+    entities: ['../../entities/*{.ts,.js}'],
+    migrations: ['../../migration/*{.ts,.js}'],
     subscribers: [],
-});
+};
 exports.default = config;
-//# sourceMappingURL=data-source.js.map
+//# sourceMappingURL=ormconfig.js.map

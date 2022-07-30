@@ -1,10 +1,8 @@
-import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm"
-import * as uuid from "uuid"
+import { EntityDatas } from "../core/domain/entity";
+import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn, Unique } from "typeorm"
 
 @Entity()
-export class Address {
-    @PrimaryColumn()
-    private id: string;
+export class Address extends EntityDatas{
     @Column()
     public cep: string;
     @Column()
@@ -18,9 +16,5 @@ export class Address {
     @Column()
     public uf: string;
 
-    constructor(id?: string) {
-        this.id = id ?? uuid.v4()
-    }
-
-    public get _id() { return this.id }
+    constructor() { super() }
 }

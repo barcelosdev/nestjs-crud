@@ -1,12 +1,9 @@
 import { Address } from "./address"
 import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from "typeorm"
-import * as uuid from "uuid"
+import { EntityDatas } from "../core/domain/entity"
 
 @Entity()
-export class Costumer {
-
-    @PrimaryColumn()
-    private id: string
+export class Costumer extends EntityDatas{
 
     @Column()
     protected name: string
@@ -18,18 +15,16 @@ export class Costumer {
     private createdAt: string
 
     @OneToOne(() => Address)
-    @JoinColumn({name: "address_id"})
+    @JoinColumn({name: "address_id", referencedColumnName: "id"})
     public address: Address
 
-    constructor(name: string, email: string, address: Address, id?: string) {
-        this.id = id ?? uuid.v4()
+    constructor(name: string, email: string, address: Address) {
+        super()
         this.name = name
         this.email = email
         this.address = address
         this.createdAt = new Date().toLocaleString()
     }
-    
-    public get _id() { return this.id }
 
     public get _name() { return this.name }
     public set _name(name: string) { this.name = name }

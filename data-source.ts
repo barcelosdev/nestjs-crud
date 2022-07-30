@@ -1,7 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const typeorm_1 = require("typeorm");
-const config = new typeorm_1.DataSource({
+import { DataSource } from "typeorm"
+
+const config = new DataSource({
     type: "postgres",
     host: "localhost",
     port: 5432,
@@ -13,6 +12,6 @@ const config = new typeorm_1.DataSource({
     entities: ['dist/src/entities/*{.ts,.js}'],
     migrations: ['dist/src/migration/*{.ts,.js}'],
     subscribers: [],
-});
-exports.default = config;
-//# sourceMappingURL=data-source.js.map
+})
+
+export default config

@@ -1,6 +1,6 @@
+import { Address } from "../entities/address"
 import { Injectable } from "@nestjs/common"
 import axios from "axios"
-import { Address } from "../entities/address"
 
 const apiUrl = "https://viacep.com.br/ws/"
 const json = "/json/"
@@ -9,7 +9,14 @@ const json = "/json/"
 export class AddressService {
 
     async findCep(cep: string) {
-        return getUrl(`${apiUrl}${cep}${json}`)
+
+        cep.replace('/[^0-9]/g','')
+
+        if(cep.length < 8) {
+            return getUrl(`${apiUrl}${cep}${json}`)
+        } else {
+            return JSON.parse(JSON.stringify("Invalid CEP"))
+        }
     }
 }
 

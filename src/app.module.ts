@@ -1,10 +1,13 @@
 import { Module } from '@nestjs/common';
 import { AddressModule } from './modules/address.module';
 import { CostumerModule } from './modules/costumer.module';
-import { DataSourceModule } from './core/config/data-source';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import config from 'ormconfig';
 
 @Module({
-  imports: [CostumerModule, AddressModule, DataSourceModule],
+  imports: [
+    TypeOrmModule.forRoot(config),
+  CostumerModule, AddressModule],
 })
 
 export class AppModule {}
