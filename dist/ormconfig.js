@@ -9,8 +9,8 @@ const config = {
     database: "nestjs_crud_db",
     synchronize: false,
     logging: false,
-    entities: ['../../entities/*{.ts,.js}'],
-    migrations: ['../../migration/*{.ts,.js}'],
+    entities: ['dist/src/entities/*{.ts,.js}'],
+    migrations: ['dist/src/migration/*{.ts,.js}'],
     subscribers: [],
 };
 exports.default = config;

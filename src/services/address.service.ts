@@ -12,7 +12,7 @@ export class AddressService {
 
         cep.replace('/[^0-9]/g','')
 
-        if(cep.length < 8) {
+        if(cep.length <= 8) {
             return getUrl(`${apiUrl}${cep}${json}`)
         } else {
             return JSON.parse(JSON.stringify("Invalid CEP"))

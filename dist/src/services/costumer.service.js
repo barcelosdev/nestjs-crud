@@ -31,7 +31,7 @@ let CostumerService = class CostumerService {
             address.city = (await properties).city;
             address.uf = (await properties).uf;
             this.addressRepo.save(address);
-            const newCostumer = new costumer_1.Costumer(body['_name'], body['_email'], address);
+            const newCostumer = new costumer_1.Costumer(body['name'], body['email'], address);
             this.costumerRepo.save(newCostumer);
             return JSON.parse(JSON.stringify(newCostumer));
         }

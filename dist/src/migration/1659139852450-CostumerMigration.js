@@ -68,6 +68,16 @@ class CostumerMigration1659139852450 {
                 }
             ],
         }), true);
+        await queryRunner.addColumn("costumer", new typeorm_1.TableColumn({
+            name: "address_id",
+            type: "uuid",
+        }));
+        await queryRunner.createForeignKey("costumer", new typeorm_1.TableForeignKey({
+            columnNames: ["address_id"],
+            referencedColumnNames: ["id"],
+            referencedTableName: "address",
+            onDelete: "CASCADE",
+        }));
     }
     async down(queryRunner) {
         const table = await queryRunner.getTable("costumer");

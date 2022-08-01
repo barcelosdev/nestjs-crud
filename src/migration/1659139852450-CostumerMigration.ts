@@ -78,6 +78,24 @@ export class CostumerMigration1659139852450 implements MigrationInterface {
             }),
             true,
         )
+
+        await queryRunner.addColumn(
+            "costumer",
+            new TableColumn({
+                name: "address_id",
+                type: "uuid",
+            }),
+        )
+
+        await queryRunner.createForeignKey(
+            "costumer",
+            new TableForeignKey({
+                columnNames: ["address_id"],
+                referencedColumnNames: ["id"],
+                referencedTableName: "address",
+                onDelete: "CASCADE",
+            }),
+        )
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {

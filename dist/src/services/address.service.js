@@ -14,7 +14,12 @@ const json = "/json/";
 let AddressService = class AddressService {
     async findCep(cep) {
         cep.replace('/[^0-9]/g', '');
-        return getUrl(`${apiUrl}${cep}${json}`);
+        if (cep.length <= 8) {
+            return getUrl(`${apiUrl}${cep}${json}`);
+        }
+        else {
+            return JSON.parse(JSON.stringify("Invalid CEP"));
+        }
     }
 };
 AddressService = __decorate([

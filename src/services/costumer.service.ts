@@ -36,8 +36,8 @@ export class CostumerService implements CRUD<Costumer> {
             this.addressRepo.save(address)
 
             const newCostumer: Costumer = new Costumer(
-                body['_name'], 
-                body['_email'], 
+                body['name'], 
+                body['email'], 
                 address,
             )
             
