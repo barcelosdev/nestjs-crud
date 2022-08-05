@@ -11,7 +11,7 @@ export class GuitarService {
         private repository: Repository<Guitar>
     ){}
 
-    create(body){
+    create(guitar){
 
     }
 }
