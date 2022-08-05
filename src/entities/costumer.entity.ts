@@ -1,4 +1,4 @@
-import { Address } from "./address"
+import { Address } from "./address.entity"
 import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from "typeorm"
 import { EntityDatas } from "../core/domain/entity"
 

@@ -1,9 +1,9 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from '@nestjs/typeorm';
-import { Costumer } from "../entities/costumer";
+import { Costumer } from "../entities/costumer.entity";
 import { Repository } from "typeorm";
 import { CRUD } from "../core/interfaces/crud";
-import { Address } from "../entities/address";
+import { Address } from "../entities/address.entity";
 import { AddressService } from "./address.service";
 
 @Injectable()

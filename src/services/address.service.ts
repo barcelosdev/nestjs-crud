@@ -1,4 +1,4 @@
-import { Address } from "../entities/address"
+import { Address } from "../entities/address.entity"
 import { Injectable } from "@nestjs/common"
 import axios from "axios"
 
