@@ -1,72 +1,71 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
+# **NestJS CRUD**
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+### A simple CRUD with the NestJS framework focused on putting some development concepts and practices into practice.
+<br>
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Some practices applied here:
 
-## Installation
+- DTO (Data Transfer Objects)
+- External API Consume: [ViaCEP](https://viacep.com.br/)
+- OO (Object Orientation) Concepts
+- CRUD (Create, Read, Update and Delete)
+- REST Architecture
+
+## **Installation**
 
 ```bash
 $ npm install
 ```
 
-## Running the app
+## **Running the app**
 
 ```bash
 # development
 $ npm run start
 
 # watch mode
-$ npm run start:dev
+$ npm run dev
 
 # production mode
-$ npm run start:prod
+$ npm run prod
 ```
 
-## Test
+## **Migrations**
 
+Take a look at the official documentation: https://typeorm.io/migrations
+
+### **Generate a new migration with recent database** updates  
+A new migration will be generated with all the changes made to the entity annotations:
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+$ npm run typeorm migration:generate ./path/to/migrations/GenerateExample
 ```
 
-## Support
+### **Create a new migration manually**  
+A new empty migration will be created where it will be necessary to write manually which changes will be made in the database:
+```bash
+$ npm run typeorm migration:create ./path/to/migrations/CreateExample;
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### **Upload all migrations to the database**  
+All migrations created and generated will upload all updates to the database:
+```bash
+$ npm run typeorm migration:run
+```
 
-## Stay in touch
+### **Revert the last migration made to the database**  
+The last migration executed will be undone and all queries contained in it will be reverted:
+```bash
+$ npm run typeorm migration:revert
+```
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### **View all migrations executed and not yet executed**
+The terminal will show all the migrations that have been executed and that haven't been executed yet:
+```bash
+$ npm run typeorm migration:show
+```
 
 ## License
 

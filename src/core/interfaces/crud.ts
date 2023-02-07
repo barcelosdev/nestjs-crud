@@ -1,6 +1,7 @@
 export interface CRUD<Object> {
-    create(object: Object)
-    update(id: any, properties: any)
-    findById(object: Object)
-    delete(object: Object)
+    create(object: Object): Promise<Object>
+    listAll(): Promise<Object[]>
+    update(id: string, body: Object): Promise<Object>
+    findById(id: string): Promise<Object>
+    delete(id: string): Promise<Object>
 }

@@ -1,4 +1,4 @@
-import { PrimaryColumn, PrimaryGeneratedColumn, Unique } from "typeorm";
+import { PrimaryColumn } from "typeorm";
 import * as uuid from "uuid"
 
 export abstract class EntityDatas {

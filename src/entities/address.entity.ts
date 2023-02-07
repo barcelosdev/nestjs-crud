@@ -1,8 +1,9 @@
 import { EntityDatas } from "../core/domain/entity";
-import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn, Unique } from "typeorm"
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from "typeorm"
+import { Customer } from "./customer.entity";
 
 @Entity()
-export class Address extends EntityDatas{
+export class Address extends EntityDatas {
     @Column()
     public cep: string;
     @Column()
@@ -15,6 +16,9 @@ export class Address extends EntityDatas{
     public city: string;
     @Column()
     public uf: string;
+    @ManyToOne(() => Customer, (customer) => customer.address, { nullable: false })
+    @JoinColumn({ name: "customer_id", referencedColumnName: "id" })
+    public customer: Customer
 
     constructor() { super() }
 }

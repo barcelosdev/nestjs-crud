@@ -1,11 +1,17 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config'
 import { AddressModule } from './modules/address.module';
-import { CostumerModule } from './modules/costumer.module';
+import { CustomerModule } from './modules/customer.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import config from 'ormconfig';
+import { typeOrmAsyncConfig } from './config/database/ormconfig';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(config), CostumerModule, AddressModule],
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    TypeOrmModule.forRootAsync(typeOrmAsyncConfig),
+    CustomerModule,
+    AddressModule
+  ]
 })
 
-export class AppModule {}
+export class AppModule { }

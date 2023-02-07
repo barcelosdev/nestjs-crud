@@ -15,13 +15,13 @@ export class AddressService {
         if(cep.length <= 8) {
             return getUrl(`${apiUrl}${cep}${json}`)
         } else {
-            return JSON.parse(JSON.stringify("Invalid CEP"))
+            return JSON.parse(JSON.stringify("Invalid postal code"))
         }
     }
 }
 
 async function getUrl(url: string): Promise<Address>{
-    let res
+    let res;
     await axios.get(url).then(response => {
         
         let properties = {
