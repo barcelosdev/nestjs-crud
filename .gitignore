@@ -1,9 +1,21 @@
-.idea/
-.vscode/
-node_modules/
-build/
-tmp/
-temp/
+# Compiled output
+/dist
+/node_modules
+.eslintrc.js
+.prettierrc
 .env
-dist/
-src/migrations/*
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# VSCode
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/extensions.json
